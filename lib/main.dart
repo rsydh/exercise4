@@ -63,12 +63,12 @@ class _MyHomePageState extends State <MyHomePage>{
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Container(
-                                width: 50,
-                                height: 50,
+                                width: 80,
+                                height: 80,
                                 child: Image(
                                   image: NetworkImage(
                                     items[index].avatar == null
-                                        ? 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Error.svg/1200px-Error.svg.png'
+                                        ? 'https://st4.depositphotos.com/14953852/22772/v/600/depositphotos_227725020-stock-illustration-image-available-icon-flat-vector.jpg'
                                         : items[index].avatar.toString(),
                                   ),
                                   fit: BoxFit.fill,
@@ -85,7 +85,7 @@ class _MyHomePageState extends State <MyHomePage>{
                                         items[index].firstname.toString()
                                             +" "+ items[index].lastname.toString(),
                                         style: TextStyle(
-                                            fontSize: 16,
+                                            fontSize: 20,
                                             fontWeight: FontWeight.bold
                                         ),
                                       ),
@@ -94,17 +94,16 @@ class _MyHomePageState extends State <MyHomePage>{
                                       child: Text(
                                         items[index].username.toString(),
                                         style: TextStyle(
-                                          fontSize: 14,
+                                          fontSize: 18,
                                           fontWeight: FontWeight.bold,
                                         ),
                                       ),),
-
                                     Padding(padding: EdgeInsets.only(left:18,right:8),
                                       child: Text(
                                         items[index].status == null? 'Status' :
                                         items[index].status.toString(),
                                         style: TextStyle(
-                                          fontSize: 10,
+                                          fontSize: 16,
                                           color: Colors.grey,
                                         ),
                                       ),
@@ -123,16 +122,17 @@ class _MyHomePageState extends State <MyHomePage>{
                                       padding: EdgeInsets.only(left: 8,right:8),
                                       child: Text(items[index].lastseen.toString(),
                                         style: TextStyle(
-                                            fontSize: 16,
+                                            fontSize: 14,
                                             fontWeight: FontWeight.bold
                                         ),
                                       ),
                                     ),
-                                    Padding(padding: EdgeInsets.only(left:8,right:8),
-                                        child: Text(items[index].message == null? ' '
+                                    //Padding(padding: EdgeInsets.only(left:8,right:8),
+                                    CircleAvatar(
+                                      child: Text(items[index].message == null? '0'
                                             : items[index].message.toString(),
                                           style: TextStyle(
-                                              fontSize: 16,
+                                              fontSize: 14,
                                               fontWeight: FontWeight.bold),))
                                   ],
                                 ),
@@ -156,16 +156,11 @@ class _MyHomePageState extends State <MyHomePage>{
 
     );
   }
-
-  //This function will be used to read json file
-  //It will take time, hence use Future
-  //async is type of Future
+//fetch data
   Future<List<Person>>readJsonData() async{
     final jsondata =
     await rootBundle.rootBundle.loadString('jsonfile/MOCK_DATA.json');
-    //data from json file has been read and stored in the list
     final list = json.decode(jsondata) as List<dynamic>;
-    //now return the list
     return list.map((e) => Person.fromJson(e)).toList();
   }
 }
