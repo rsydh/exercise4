@@ -40,15 +40,6 @@ class _MyHomePageState extends State <MyHomePage>{
       body:
       Center(
         child: Container(
-          decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topRight,
-                end: Alignment.bottomLeft,
-                colors: [
-                  Colors.tealAccent,
-                ],
-              )
-          ),
           child: FutureBuilder(
             future: readJsonData(),
             builder: (context,data) {
@@ -76,7 +67,9 @@ class _MyHomePageState extends State <MyHomePage>{
                                 height: 50,
                                 child: Image(
                                   image: NetworkImage(
-                                    items[index].avatar.toString()
+                                    items[index].avatar == null
+                                        ? 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Error.svg/1200px-Error.svg.png'
+                                        : items[index].avatar.toString(),
                                   ),
                                   fit: BoxFit.fill,
                                 ),
@@ -135,12 +128,12 @@ class _MyHomePageState extends State <MyHomePage>{
                                         ),
                                       ),
                                     ),
-                                    // Padding(padding: EdgeInsets.only(left:8,right:8),
-                                    //     child: Text(items[index].messages == null? ' '
-                                    //         : items[index].messages.toString(),
-                                    //       style: TextStyle(
-                                    //           fontSize: 16,
-                                    //           fontWeight: FontWeight.bold),))
+                                    Padding(padding: EdgeInsets.only(left:8,right:8),
+                                        child: Text(items[index].message == null? ' '
+                                            : items[index].message.toString(),
+                                          style: TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.bold),))
                                   ],
                                 ),
                               ),

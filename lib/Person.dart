@@ -7,19 +7,18 @@ class Person {
   String? lastseen;
   String? avatar;
   String? status;
+  int? message;
 
   //constructor
   Person(
-      {
-      this.id,
+      {this.id,
       this.firstname,
       this.lastname,
       this.username,
       this.lastseen,
       this.avatar,
-      this.status
-      }
-      );
+      this.status,
+      this.message});
 
   Person.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -29,5 +28,6 @@ class Person {
     lastseen = json['last_seen_time'];
     avatar = json['avatar'];
     status = json['status'];
+    message = json['messages'];
   }
 }
